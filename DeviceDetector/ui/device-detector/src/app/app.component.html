@@ -1,0 +1,55 @@
+<div class="ng-container">
+<mat-toolbar color="primary">
+  <h1>
+    ngDeviceDetector
+  </h1>
+</mat-toolbar>
+
+<br/>
+  <h1>Your current device</h1>
+    <ul *ngIf="deviceInfo">
+      <li>userAgent - {{deviceInfo.userAgent}}</li>
+      <li>OS - {{deviceInfo.os}}</li>
+      <li>OS version - {{deviceInfo.os_version}}</li>
+      <li>Browser - {{deviceInfo.browser}}</li>
+      <li>Device - {{deviceInfo.device}}</li>
+      <li>Browser version - {{deviceInfo.browser_version}}</li>
+      <li>Device type - {{deviceInfo.deviceType}}</li>
+      <li>Orientation - {{deviceInfo.orientation}}</li>
+    </ul>
+
+    <br/>
+    <br/>
+    <span>
+      <h1>Your previous scans</h1>
+      &nbsp;
+      <button mat-raised-button color="primary" (click)="scanDeviceInfo(deviceInfo)">Reload</button>
+    </span>
+    <table mat-table [dataSource]="deviceInfoHistory" class="mat-elevation-z8 demo-table">
+      <!-- Position Column -->
+      <ng-container matColumnDef="device">
+        <th mat-header-cell *matHeaderCellDef> Device </th>
+        <td mat-cell *matCellDef="let deviceInfo"> {{deviceInfo.device}} </td>
+      </ng-container>
+      <ng-container matColumnDef="deviceType">
+        <th mat-header-cell *matHeaderCellDef> Device type </th>
+        <td mat-cell *matCellDef="let deviceInfo"> {{deviceInfo.deviceType}} </td>
+      </ng-container>
+      <ng-container matColumnDef="os">
+        <th mat-header-cell *matHeaderCellDef> OS </th>
+        <td mat-cell *matCellDef="let deviceInfo"> {{deviceInfo.os}} </td>
+      </ng-container>
+      <ng-container matColumnDef="osVersion">
+        <th mat-header-cell *matHeaderCellDef> OS version </th>
+        <td mat-cell *matCellDef="let deviceInfo"> {{deviceInfo.os_version}} </td>
+      </ng-container>
+      <ng-container matColumnDef="browser">
+        <th mat-header-cell *matHeaderCellDef> Browser </th>
+        <td mat-cell *matCellDef="let deviceInfo"> {{deviceInfo.browser}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+</div>
