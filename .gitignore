@@ -1,0 +1,14 @@
+*.suo
+*.user
+.vs
+.vscode
+.idea
+.terraform
+**/bin/*
+**/obj/*
+.DS_Store
+
+appsettings.integration.json
+
+# do not sync user profile
+**/launchSettings.json

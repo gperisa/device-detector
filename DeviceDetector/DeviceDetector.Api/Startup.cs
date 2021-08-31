@@ -1,12 +1,18 @@
-using GoranApp.Models;
+using Autofac;
+using DeviceDetector.Api.Composition;
+using DeviceDetector.Infrastructure.Composition;
+using DeviceDetector.Models;
+using JetBrains.Annotations;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
+using System.Reflection;
 
-namespace GoranApp
+namespace DeviceDetector
 {
     public class Startup
     {
@@ -20,8 +26,10 @@ namespace GoranApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             services.AddControllers();
-            services.AddSingleton<IList<DeviceInfo>, List<DeviceInfo>>();
+            services.AddSingleton<IList<DeviceInfoResponse>, List<DeviceInfoResponse>>();
+            services.AddInfrastructure(Configuration);
 
             // Add Cors
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
@@ -51,6 +59,12 @@ namespace GoranApp
             {
                 endpoints.MapControllers();
             });
+        }
+
+        [UsedImplicitly]
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule<WebCompositionRoot>();
         }
     }
 }

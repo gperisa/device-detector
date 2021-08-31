@@ -1,46 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DeviceDetectorNET.Parser;
-using GoranApp.Models;
+﻿using DeviceDetector.Application.Queries;
+using DeviceDetector.Models;
+using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace GoranApp.Controllers
+namespace DeviceDetector.Api.Controllers
 {
     [ApiController]
     [EnableCors("MyPolicy")]
     [Route("[controller]")]
     public class DeviceInfoController : ControllerBase
     {
-        public static readonly IList<DeviceInfo> deviceInfoHistory = new List<DeviceInfo>();
+        public static readonly IList<DeviceInfoResponse> deviceInfoHistory = new List<DeviceInfoResponse>();
 
-        private readonly ILogger<DeviceInfoController> _logger;
+        private readonly ILogger<DeviceInfoController> Logger;
+        private readonly IMediator Mediator;
 
-        public DeviceInfoController(ILogger<DeviceInfoController> logger)
+        public DeviceInfoController(ILogger<DeviceInfoController> logger, IMediator mediator)
         {
-            _logger = logger;
+            Logger = logger;
+            Mediator = mediator;
         }
 
         [HttpGet]
-        public IList<DeviceInfo> GetDeviceInfo()
+        public async Task<DeviceInfoResponse> GetDeviceInfoAsync()
         {
-            DeviceDetectorNET.DeviceDetector.SetVersionTruncation(VersionTruncation.VERSION_TRUNCATION_NONE);
+            var userAgent = Request.Headers["User-Agent"].ToString();
+            
+            var query = new GetDeviceInfoQuery(userAgent);
+            var result = await Mediator.Send(query);
 
-            var userAgent = Request.Headers["User-Agent"];
-            var result = DeviceDetectorNET.DeviceDetector.GetInfoFromUserAgent(userAgent);
+            deviceInfoHistory.Add(result);
 
-            var output = result.Success ? result.ToString().Replace(Environment.NewLine, "<br />") : "Unknown";
-            return deviceInfoHistory;
+            return result;
         }
 
         [HttpPost]
-        public IList<DeviceInfo> SaveDeviceInfo(DeviceInfo deviceInfo)
+        public IList<DeviceInfoResponse> SaveDeviceInfo(DeviceInfoResponse deviceInfo)
         {
             deviceInfoHistory.Add(deviceInfo);
-            _logger.LogInformation("Device info was returned");
+            Logger.LogInformation("Device info was returned");
             return deviceInfoHistory;
         }
     }

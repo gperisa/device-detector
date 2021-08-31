@@ -9,6 +9,5 @@
         public string Browser { get; set; }
         public string BrowserVersion { get; set; }
         public string DeviceType { get; set; }
-        public string Orientation { get; set; }
     }
 }

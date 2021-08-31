@@ -1,24 +1,33 @@
-﻿using DeviceDetector.Models;
+﻿using AutoMapper;
+using DeviceDetector.Application.Abstractions;
+using DeviceDetector.Application.Queries;
+using DeviceDetector.Models;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace DeviceDetector.Application.UseCases.DeviceInfoUseCases
 {
-    public class GetDeviceInfoUseCase : IRequestHandler<GetDeviceInfoQuery>
+    public class GetDeviceInfoUseCase : IRequestHandler<GetDeviceInfoQuery, DeviceInfoResponse>
     {
         private readonly IDeviceDetectionService _deviceDetectionService;
-        //  private readonly ApplicationSettings _appSettings;
+        protected IMapper Mapper { get; }
 
-        public GetDeviceInfoUseCase(IDeviceDetectionService deviceDetectionService)
+        public GetDeviceInfoUseCase(IDeviceDetectionService deviceDetectionService, IMapper mapper)
         {
             _deviceDetectionService = deviceDetectionService;
+            Mapper = mapper;
         }
 
         public async Task<DeviceInfoResponse> Handle(GetDeviceInfoQuery request, CancellationToken cancellationToken)
         {
-            var response = return await _deviceDetectionService.GetDeviceInfo(request.UserAgent);
-            
+            var response = await _deviceDetectionService.GetDeviceInfo(request.UserAgent);
+            return Mapper.Map<DeviceInfoResponse>(response);
         }
     }
 }
+
