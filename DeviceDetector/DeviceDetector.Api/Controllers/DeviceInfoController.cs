@@ -33,16 +33,20 @@ namespace DeviceDetector.Api.Controllers
             var query = new GetDeviceInfoQuery(userAgent);
             var result = await Mediator.Send(query);
 
-            deviceInfoHistory.Add(result);
-
             return result;
         }
 
         [HttpPost]
-        public IList<DeviceInfoResponse> SaveDeviceInfo(DeviceInfoResponse deviceInfo)
-        {
-            deviceInfoHistory.Add(deviceInfo);
-            Logger.LogInformation("Device info was returned");
+        public async Task<IList<DeviceInfoResponse>> SaveDeviceInfoAsync(DeviceInfoResponse deviceInfo)
+        {         
+            var userAgent = Request.Headers["User-Agent"].ToString();
+            var query = new GetDeviceInfoQuery(userAgent);
+
+            var result = await Mediator.Send(query);
+
+            deviceInfoHistory.Add(result);
+
+            Logger.LogInformation("Device info was saved to history and returned");
             return deviceInfoHistory;
         }
     }
