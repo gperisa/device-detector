@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Api", "DeviceDetector.Api\DeviceDetector.Api.csproj", "{E0F9E587-300C-451D-9379-0BA76F0A18BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Api", "src\DeviceDetector.Api\DeviceDetector.Api.csproj", "{E0F9E587-300C-451D-9379-0BA76F0A18BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Api.Tests", "DeviceDetector.Tests\DeviceDetector.Api.Tests.csproj", "{F7D106BF-29E8-4ABF-ABFB-134D8863512C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Application", "src\DeviceDetector.Application\DeviceDetector.Application.csproj", "{A8690FAF-C8C0-45E2-A234-015296E1C4F2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Application", "DeviceDetector.Application\DeviceDetector.Application.csproj", "{A8690FAF-C8C0-45E2-A234-015296E1C4F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Domain", "src\DeviceDetector.Domain\DeviceDetector.Domain.csproj", "{6173F62A-296A-4169-B64F-D0FA69D3F0A2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Domain", "DeviceDetector.Domain\DeviceDetector.Domain.csproj", "{6173F62A-296A-4169-B64F-D0FA69D3F0A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Models", "src\DeviceDetector.Models\DeviceDetector.Models.csproj", "{95909C90-771D-4A11-A25E-03DB60F418AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Models", "DeviceDetector.Models\DeviceDetector.Models.csproj", "{95909C90-771D-4A11-A25E-03DB60F418AA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Infrastructure", "DeviceDetector.Infrastructure\DeviceDetector.Infrastructure.csproj", "{60178251-53BA-4AD9-B277-530445D9EA6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Infrastructure", "src\DeviceDetector.Infrastructure\DeviceDetector.Infrastructure.csproj", "{60178251-53BA-4AD9-B277-530445D9EA6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CAD670FE-CE68-48D2-949D-BA47DB526C2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BB35E521-EA75-413B-82F8-4703ACCD2697}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceDetector.Application.Tests", "DeviceDetector.Application.Tests\DeviceDetector.Application.Tests.csproj", "{BD487EDF-452A-4AAF-A367-52A75062D5D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Application.Tests", "test\DeviceDetector.Application.Tests\DeviceDetector.Application.Tests.csproj", "{BD487EDF-452A-4AAF-A367-52A75062D5D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceDetector.Infrastructure.Tests", "DeviceDetector.Infrastructure.Tests\DeviceDetector.Infrastructure.Tests.csproj", "{D0DD2AAD-E7F1-411C-AC1D-137686E8F5E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Infrastructure.Tests", "test\DeviceDetector.Infrastructure.Tests\DeviceDetector.Infrastructure.Tests.csproj", "{D0DD2AAD-E7F1-411C-AC1D-137686E8F5E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDetector.Api.Tests", "test\DeviceDetector.Tests\DeviceDetector.Api.Tests.csproj", "{0408A2BF-16DA-44DC-AD28-F59194AC44C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		{E0F9E587-300C-451D-9379-0BA76F0A18BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0F9E587-300C-451D-9379-0BA76F0A18BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0F9E587-300C-451D-9379-0BA76F0A18BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7D106BF-29E8-4ABF-ABFB-134D8863512C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7D106BF-29E8-4ABF-ABFB-134D8863512C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7D106BF-29E8-4ABF-ABFB-134D8863512C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7D106BF-29E8-4ABF-ABFB-134D8863512C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8690FAF-C8C0-45E2-A234-015296E1C4F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8690FAF-C8C0-45E2-A234-015296E1C4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8690FAF-C8C0-45E2-A234-015296E1C4F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,19 +57,23 @@ Global
 		{D0DD2AAD-E7F1-411C-AC1D-137686E8F5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0DD2AAD-E7F1-411C-AC1D-137686E8F5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0DD2AAD-E7F1-411C-AC1D-137686E8F5E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0408A2BF-16DA-44DC-AD28-F59194AC44C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0408A2BF-16DA-44DC-AD28-F59194AC44C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0408A2BF-16DA-44DC-AD28-F59194AC44C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0408A2BF-16DA-44DC-AD28-F59194AC44C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E0F9E587-300C-451D-9379-0BA76F0A18BD} = {BB35E521-EA75-413B-82F8-4703ACCD2697}
-		{F7D106BF-29E8-4ABF-ABFB-134D8863512C} = {CAD670FE-CE68-48D2-949D-BA47DB526C2D}
 		{A8690FAF-C8C0-45E2-A234-015296E1C4F2} = {BB35E521-EA75-413B-82F8-4703ACCD2697}
 		{6173F62A-296A-4169-B64F-D0FA69D3F0A2} = {BB35E521-EA75-413B-82F8-4703ACCD2697}
 		{95909C90-771D-4A11-A25E-03DB60F418AA} = {BB35E521-EA75-413B-82F8-4703ACCD2697}
 		{60178251-53BA-4AD9-B277-530445D9EA6D} = {BB35E521-EA75-413B-82F8-4703ACCD2697}
 		{BD487EDF-452A-4AAF-A367-52A75062D5D9} = {CAD670FE-CE68-48D2-949D-BA47DB526C2D}
 		{D0DD2AAD-E7F1-411C-AC1D-137686E8F5E7} = {CAD670FE-CE68-48D2-949D-BA47DB526C2D}
+		{0408A2BF-16DA-44DC-AD28-F59194AC44C6} = {CAD670FE-CE68-48D2-949D-BA47DB526C2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B221AFBF-09A6-4E34-807D-9357D5DF4FC0}

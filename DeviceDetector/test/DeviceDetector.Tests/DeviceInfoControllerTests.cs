@@ -1,8 +1,6 @@
-﻿using DeviceDetector.Domain;
-using DeviceDetector.Models;
+﻿using DeviceDetector.Models;
 using DeviceDetector.Tests;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;

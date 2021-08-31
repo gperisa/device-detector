@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DeviceDetector.Api\DeviceDetector.Api.csproj" />
+    <ProjectReference Include="..\..\src\DeviceDetector.Models\DeviceDetector.Models.csproj" />
   </ItemGroup>
 
 </Project>
