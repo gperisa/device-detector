@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DeviceDetectorNET.Parser;
 using GoranApp.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,12 @@ namespace GoranApp.Controllers
         [HttpGet]
         public IList<DeviceInfo> GetDeviceInfo()
         {
+            DeviceDetectorNET.DeviceDetector.SetVersionTruncation(VersionTruncation.VERSION_TRUNCATION_NONE);
+
+            var userAgent = Request.Headers["User-Agent"];
+            var result = DeviceDetectorNET.DeviceDetector.GetInfoFromUserAgent(userAgent);
+
+            var output = result.Success ? result.ToString().Replace(Environment.NewLine, "<br />") : "Unknown";
             return deviceInfoHistory;
         }
 
