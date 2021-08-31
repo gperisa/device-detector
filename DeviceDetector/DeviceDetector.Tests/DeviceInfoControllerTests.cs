@@ -1,4 +1,6 @@
 ﻿using DeviceDetector.Domain;
+using DeviceDetector.Models;
+using DeviceDetector.Tests;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,13 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DeviceDetector.Tests.Api
+namespace DeviceDetector.Api.Tests
 {
-    public class ApiTests
+    public class DeviceInfoControllerTests
     {
         private readonly HttpClient _testClient;
 
-        public ApiTests(HttpClient client)
+        public DeviceInfoControllerTests(HttpClient client)
         {
             _testClient = client;
         }
@@ -29,25 +31,25 @@ namespace DeviceDetector.Tests.Api
 
             // -- Assert
             Assert.NotNull(result);
+            Assert.IsType<DeviceInfoResponse>(result);
         }
 
         [Fact]
-        public async Task PostDeviceInfoTest()
-        { 
+        public async Task SaveDeviceInfoTest()
+        {
             // -- Arrange
-            var deviceInfo = new DeviceInfo()
+            var deviceInfo = new DeviceInfoResponse()
             {
-               Browser = "Chrome",
-               BrowserVersion = "11",
-               Device = "Test device",
-               OS = "Windows",
-               DeviceType = "sdsad",
-               Orientation = "portrait",
-               OsVersion = "OS v1",
-               UserAgent = "Mpzzila"
+                Browser = "Chrome",
+                BrowserVersion = "11",
+                Device = "Test device",
+                OS = "Windows",
+                DeviceType = "sdsad",
+                OsVersion = "OS v1",
+                UserAgent = "Mpzzila"
             };
 
-            var httpContent = new StringContent(JsonConvert.SerializeObject(deviceInfo),Encoding.UTF8, "application/json");
+            var httpContent = new StringContent(JsonConvert.SerializeObject(deviceInfo), Encoding.UTF8, "application/json");
 
             // -- Act
             var response = await _testClient.PostAsync($"/deviceInfo", httpContent);
@@ -56,7 +58,7 @@ namespace DeviceDetector.Tests.Api
             Assert.NotNull(response);
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var result = await response.Content.ReadAsJsonAsync<List<DeviceInfo>>()
+                var result = await response.Content.ReadAsJsonAsync<List<DeviceInfoResponse>>()
                     .ConfigureAwait(false);
                 Assert.Single(result);
                 Assert.Equal("11", result[0].BrowserVersion);
